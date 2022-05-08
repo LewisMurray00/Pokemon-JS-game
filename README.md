@@ -4,7 +4,7 @@
 
 - Map creation using Tiled map editor:
 
-1. Downloading and setting up
+1. Downloading and setting up (Done)
 2. Layering Tiles for ocean & land
 3. Placing trees
 4. Landscape details
