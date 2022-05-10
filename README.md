@@ -8,9 +8,11 @@
 
 2. Layering Tiles for ocean & land (Done)
 
-3. Placing trees
-4. Landscape details
-5. Collisions and boundaries
+3. Placing trees (Done)
+
+4. Landscape details (Done)
+
+5. Collisions and boundaries (Done)
 6. Foreground layers
 7. Exporting layers for project import
 
