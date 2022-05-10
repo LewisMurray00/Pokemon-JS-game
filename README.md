@@ -22,7 +22,8 @@
 
 1. Project set-up (Done)
 
-2. Import & render map
+2. Import & render map (Done)
+
 3. Player creation
 4. Move player using keydown
 5. Player-to-map collisions

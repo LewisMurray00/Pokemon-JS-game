@@ -18,5 +18,5 @@ context.fillRect(0,0, canvas.width, canvas.height)
 
     /* Once the image is loaded it activates this command */
     mapImage.onload = () => {
-        context.drawImage(mapImage,0,0)
+        context.drawImage(mapImage,-700,-400)
     }
