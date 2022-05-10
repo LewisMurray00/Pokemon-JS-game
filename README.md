@@ -20,7 +20,8 @@
 
 - Player & Map Development:
 
-1. Project set-up
+1. Project set-up (Done)
+
 2. Import & render map
 3. Player creation
 4. Move player using keydown
