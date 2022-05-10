@@ -13,8 +13,10 @@
 4. Landscape details (Done)
 
 5. Collisions and boundaries (Done)
-6. Foreground layers
-7. Exporting layers for project import
+
+6. Foreground layers (Done)
+
+7. Exporting layers for project import(Done)
 
 - Player & Map Development:
 
