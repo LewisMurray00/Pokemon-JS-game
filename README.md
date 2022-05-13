@@ -26,7 +26,8 @@
 
 3. Player creation (Done)
 
-4. Move player using keydown
+4. Move player using keydown (Done)
+
 5. Player-to-map collisions
 6. Foreground objects
 7. Player movement animation

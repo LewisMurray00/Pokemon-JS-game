@@ -37,18 +37,23 @@ class Sprite {
 const background = new Sprite({position:{
     x:-600,
     y:-450
-}})
+    },
+    image: mapImage
+})
 
 const keys = {
     w:{
         pressed:false
     },
+
     a:{
         pressed:false
     },
+
     s:{
         pressed:false
     },
+
     d:{
         pressed:false
     },   
@@ -56,7 +61,7 @@ const keys = {
 
 function animate(){
     window.requestAnimationFrame(animate)
-    context.drawImage(mapImage,-600,-450)
+    background.draw()
     context.drawImage(
         playerImage,
         /*arguments needed to crop the 4 sprites (crop position and crop height)*/
@@ -71,27 +76,39 @@ function animate(){
         playerImage.height
         )
 
-        if(keys.w.pressed){
-            background.position.y = background.position.y - 3
+        if(keys.w.pressed && lastKey === 'w'){
+            background.position.y += 3
+        } else if(keys.a.pressed && lastKey === 'a'){
+            background.position.x += 3
+        } else if(keys.s.pressed && lastKey === 's'){
+            background.position.y -= 3
+        } else if(keys.d.pressed && lastKey === 'd'){
+            background.position.x -= 3
         }
-    
 }
 animate()
+
+let lastKey = ''
+
 /*Listens out for when a key is pressed */
 /* Adding movement to the sprite */
 window.addEventListener('keydown', (e)=>{
     switch (e.key){
         case 'w':
             keys.w.pressed = true
+            lastKey = 'w'
             break
         case 'a':
             keys.a.pressed = true
+            lastKey = 'a'
             break
         case 's':
             keys.s.pressed = true
+            lastKey = 's'
             break
         case 'd':
             keys.d.pressed = true
+            lastKey = 'd'
             break
     }
 })
