@@ -24,7 +24,8 @@
 
 2. Import & render map (Done)
 
-3. Player creation
+3. Player creation (Done)
+
 4. Move player using keydown
 5. Player-to-map collisions
 6. Foreground objects
