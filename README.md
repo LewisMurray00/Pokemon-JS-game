@@ -28,7 +28,8 @@
 
 4. Move player using keydown (Done)
 
-5. Player-to-map collisions
+5. Player-to-map collisions(Done)
+
 6. Foreground objects
 7. Player movement animation
 
