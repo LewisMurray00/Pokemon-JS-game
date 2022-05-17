@@ -7,8 +7,14 @@ const context = canvas.getContext('2d')
 canvas.height = 576;
 canvas.width = 1024;
 
-context.fillStyle = 'white'
-context.fillRect(0,0, canvas.width, canvas.height)
+/* A for loop that runs through the array and counts in 70 increments to create the maps rows */
+const collisionsMap = []
+for (let i=0; i< collisions.length;i+=70){
+    collisionsMap.push(collisions.slice(i, 70 + i))
+}
+
+
+
 
 /* Adding the image to the screen */
 
