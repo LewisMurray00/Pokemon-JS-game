@@ -30,6 +30,10 @@ class Boundary {
 
 /* Checks for each row if the number 1025 is there and pushes it into the boundaries array*/
 const boundaries = []
+const offset = {
+    x: -600,
+    y: -450
+}
 
 collisionsMap.forEach((row,i)=>{
     row.forEach((symbol,j)=>{
@@ -37,16 +41,13 @@ collisionsMap.forEach((row,i)=>{
         boundaries.push(
             new Boundary({
                 position:{
-                    x: j * Boundary.width,
-                    y: i * Boundary.height
+                    x: j * Boundary.width + offset.x,
+                    y: i * Boundary.height + offset.y
                 }
             })
         )
     })
 })
-
-console.log(boundaries)
-
 
 /* Adding the image to the screen */
 
@@ -72,9 +73,12 @@ class Sprite {
     }
 }
 
+/*Creating the offset for the boundary markings */
+
+
 const background = new Sprite({position:{
-    x:-600,
-    y:-450
+    x: offset.x,
+    y: offset.y
     },
     image: mapImage
 })
@@ -97,9 +101,15 @@ const keys = {
     },   
 }
 
+
+
 function animate(){
     window.requestAnimationFrame(animate)
     background.draw()
+    /* Drawing the boundaries */
+    boundaries.forEach(boundary=>{
+        boundary.draw();
+    })
     context.drawImage(
         playerImage,
         /*arguments needed to crop the 4 sprites (crop position and crop height)*/
