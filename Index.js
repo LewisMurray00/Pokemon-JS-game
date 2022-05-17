@@ -131,35 +131,40 @@ const keys = {
     },   
 }
 
-const testBoundary = new Boundary({
-    position:{
-        x:400,
-        y:400
-    }
-})
 
 const movables = [
-    background, testBoundary
+    background, ...boundaries
 ]
 
-
+function rectangularCollision({rectangle1, rectangle2}){
+    return (
+        rectangle1.position.x + rectangle1.width >= rectangle2.position.x && 
+        rectangle1.position.x <= rectangle2.position.x + rectangle2.width &&
+        rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
+        rectangle1.position.y + rectangle1.height >= rectangle2.position.y
+    )
+}
 
 function animate(){
     window.requestAnimationFrame(animate)
     background.draw()
     /* Drawing the boundaries */
-    // boundaries.forEach(boundary=>{
-    //     boundary.draw();
-    // })
-    testBoundary.draw()
+    boundaries.forEach(boundary=>{
+        boundary.draw();
+
+        if(
+            rectangularCollision({
+                rectangle1: playerSprite,
+                rectangle2: boundary
+            })
+        ){
+            console.log('colliding')
+        }
+    })
     playerSprite.draw()
     
         //Detecting collision barrier
-        if(playerSprite.position.x + playerSprite.width >= testBoundary.position.x && 
-            playerSprite.position.x <= testBoundary.position.x + testBoundary.width &&
-            playerSprite.position.y <= testBoundary.position.y + testBoundary.height &&
-            playerSprite.position.y + playerSprite.height >= testBoundary.position.y
-        )
+      
 
         //Moving sprite
         if(keys.w.pressed && lastKey === 'w'){
