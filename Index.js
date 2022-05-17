@@ -67,6 +67,11 @@ class Sprite {
         this.position = position
         this.image = image
         this.frames = frames
+        
+        this.image.onload = () => {
+            this.width = this.image.width / this.frames.max
+            this.height = this.image.height
+        }
     }
 //Draws the map sprite
     draw(){
@@ -87,9 +92,17 @@ class Sprite {
 }
 
 //Creating player sprite
+const  playerSprite = new Sprite({
+    position: {
+        x: canvas.width / 2 - (192 / 4) / 2, 
+        y: canvas.height / 2 - 68 / 2,
+    },
+    image: playerImage,
+    frames: {
+        max: 4
+    }
+})
 
-// canvas.width / 2 - (this.image.width / 4) / 2, 
-// canvas.height / 2 - this.image.height / 2,
 /*Creating the offset for the boundary markings */
 
 
@@ -137,11 +150,10 @@ function animate(){
     //     boundary.draw();
     // })
     testBoundary.draw()
-   
-
+    playerSprite.draw()
+    
         //Detecting collision barrier
-        if(pla)
-
+        if(playerSprite.position.x + playerSprite.width >= testBoundary.position.x)
 
         //Moving sprite
         if(keys.w.pressed && lastKey === 'w'){
