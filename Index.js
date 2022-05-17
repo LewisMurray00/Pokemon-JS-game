@@ -142,6 +142,8 @@ const movables = [
     background, testBoundary
 ]
 
+
+
 function animate(){
     window.requestAnimationFrame(animate)
     background.draw()
@@ -153,7 +155,11 @@ function animate(){
     playerSprite.draw()
     
         //Detecting collision barrier
-        if(playerSprite.position.x + playerSprite.width >= testBoundary.position.x)
+        if(playerSprite.position.x + playerSprite.width >= testBoundary.position.x && 
+            playerSprite.position.x <= testBoundary.position.x + testBoundary.width &&
+            playerSprite.position.y <= testBoundary.position.y + testBoundary.height &&
+            playerSprite.position.y + playerSprite.height >= testBoundary.position.y
+        )
 
         //Moving sprite
         if(keys.w.pressed && lastKey === 'w'){
