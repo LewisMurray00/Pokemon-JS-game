@@ -32,7 +32,7 @@
 
 6. Foreground objects(Done)
 
-7. Player movement animation
+7. Player movement animation (Done)
 
 - Battle Sequences:
 
