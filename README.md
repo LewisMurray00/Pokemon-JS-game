@@ -30,7 +30,8 @@
 
 5. Player-to-map collisions(Done)
 
-6. Foreground objects
+6. Foreground objects(Done)
+
 7. Player movement animation
 
 - Battle Sequences:
