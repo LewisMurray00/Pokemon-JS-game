@@ -48,6 +48,18 @@ collisionsMap.forEach((row,i)=>{
     const playerImage = new Image()
     playerImage.src = "./Images/playerDown.png"
 
+    const playerUpImage = new Image()
+    playerUpImage.src = "./Images/playerUp.png"
+
+    const playerLeftImage = new Image()
+    playerLeftImage.src = "./Images/playerLeft.png"
+
+    const playerRightImage = new Image()
+    playerRightImage.src = "./Images/playerRight.png"
+
+    const playerDownImage = new Image()
+    playerDownImage.src = "./Images/playerDown.png"
+
 //Creating player sprite
 const  playerSprite = new Sprite({
     position: {
@@ -57,6 +69,12 @@ const  playerSprite = new Sprite({
     image: playerImage,
     frames: {
         max: 4
+    },
+    sprites: {
+        up: playerUpImage,
+        left: playerLeftImage,
+        right: playerRightImage,
+        down: playerDownImage
     }
 })
 
@@ -121,8 +139,9 @@ function animate(){
     foreground.draw()
         //Moving sprite
         let moving = true
-
+        playerSprite.moving=false
         if(keys.w.pressed && lastKey === 'w'){
+            playerSprite.moving=true
             for(let i = 0; i < boundaries.length; i++){
                 const boundary = boundaries[i]
                 if(
@@ -144,6 +163,7 @@ function animate(){
                 movable.position.y += 3
             })
         } else if(keys.a.pressed && lastKey === 'a'){
+            playerSprite.moving=true
             for(let i = 0; i < boundaries.length; i++){
                 const boundary = boundaries[i]
                 if(
@@ -165,6 +185,7 @@ function animate(){
                 movable.position.x += 3
             })
         } else if(keys.s.pressed && lastKey === 's'){
+            playerSprite.moving=true
             for(let i = 0; i < boundaries.length; i++){
                 const boundary = boundaries[i]
                 if(
@@ -186,6 +207,7 @@ function animate(){
                 movable.position.y -= 3
             })
         } else if(keys.d.pressed && lastKey === 'd'){
+            playerSprite.moving=true
             for(let i = 0; i < boundaries.length; i++){
                 const boundary = boundaries[i]
                 if(
