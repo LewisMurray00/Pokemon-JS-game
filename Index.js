@@ -13,21 +13,6 @@ for (let i=0; i< collisions.length;i+=70){
     collisionsMap.push(collisions.slice(i, 70 + i))
 }
 
-class Boundary {
-    static width = 48
-    static height = 48
-    constructor({position}){
-        this.position = position
-        this.width = 48
-        this.height = 48
-    }
-
-    draw(){
-        context.fillStyle = 'rgba(255,0,0,0.0)'
-        context.fillRect(this.position.x, this.position.y, this.width, this.height)
-    }
-}
-
 /* Checks for each row if the number 1025 is there and pushes it into the boundaries array*/
 const boundaries = []
 const offset = {
@@ -55,41 +40,13 @@ collisionsMap.forEach((row,i)=>{
     const mapImage = new Image()
     mapImage.src = './Images/palletTown.png'
 
+    // Creating the foreground image
+    const foregroundImage = new Image()
+    foregroundImage.src = './Images/foregroundObject.png'
+
     /* Adding the Player Image */
     const playerImage = new Image()
     playerImage.src = "./Images/playerDown.png"
-
-
-    /* Once the image is loaded it activates this command */
-/* Creates an infinite loop */
-class Sprite {
-    constructor({position, image, frames = {max:1}}){
-        this.position = position
-        this.image = image
-        this.frames = frames
-        
-        this.image.onload = () => {
-            this.width = this.image.width / this.frames.max
-            this.height = this.image.height
-        }
-    }
-//Draws the map sprite
-    draw(){
-        context.drawImage(
-            this.image,
-            /*arguments needed to crop the 4 sprites (crop position and crop height)*/
-            0,
-            0,
-            this.image.width / this.frames.max,
-            this.image.height,
-            /* Arguments to assign the actual position of the sprite */
-            this.position.x,
-            this.position.y,
-            this.image.width / this.frames.max,
-            this.image.height
-            )
-    }
-}
 
 //Creating player sprite
 const  playerSprite = new Sprite({
@@ -113,6 +70,14 @@ const background = new Sprite({position:{
     image: mapImage
 })
 
+const foreground = new Sprite(
+    {position:{
+    x: offset.x,
+    y: offset.y
+    },
+    image: foregroundImage
+})
+
 const keys = {
     w:{
         pressed:false
@@ -133,7 +98,7 @@ const keys = {
 
 
 const movables = [
-    background, ...boundaries
+    background, ...boundaries, foreground
 ]
 
 function rectangularCollision({rectangle1, rectangle2}){
@@ -153,7 +118,7 @@ function animate(){
         boundary.draw();
     })
     playerSprite.draw()
-    
+    foreground.draw()
         //Moving sprite
         let moving = true
 
