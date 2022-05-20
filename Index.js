@@ -13,6 +13,13 @@ for (let i=0; i< collisions.length;i+=70){
     collisionsMap.push(collisions.slice(i, 70 + i))
 }
 
+/* creating a loop to lay out the battle zone area */
+
+const battleZonesMap = []
+for (let i=0; i< battleZoneData.length;i+=70){
+    battleZonesMap.push(battleZoneData.slice(i, 70 + i))
+}
+
 /* Checks for each row if the number 1025 is there and pushes it into the boundaries array*/
 const boundaries = []
 const offset = {
@@ -33,6 +40,27 @@ collisionsMap.forEach((row,i)=>{
         )
     })
 })
+
+/* Push in the battlezone tile into the battlezone 2d array */
+const battleZones = []
+
+battleZonesMap.forEach((row,i)=>{
+    row.forEach((symbol,j)=>{
+        if(symbol===1025)
+        battleZones.push(
+            new Boundary({
+                position:{
+                    x: j * Boundary.width + offset.x,
+                    y: i * Boundary.height + offset.y
+                }
+            })
+        )
+    })
+})
+
+console.log(battleZones)
+
+
 
 /* Adding the image to the screen */
 
