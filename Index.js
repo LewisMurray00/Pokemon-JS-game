@@ -58,9 +58,6 @@ battleZonesMap.forEach((row,i)=>{
     })
 })
 
-console.log(battleZones)
-
-
 
 /* Adding the image to the screen */
 
@@ -141,7 +138,7 @@ const keys = {
 
 
 const movables = [
-    background, ...boundaries, foreground
+    background, ...boundaries, foreground, ...battleZones
 ]
 
 function rectangularCollision({rectangle1, rectangle2}){
@@ -160,8 +157,30 @@ function animate(){
     boundaries.forEach(boundary=>{
         boundary.draw();
     })
+    /* Drawing out the battle area and render it */
+    battleZones.forEach(battleZones=>{
+        battleZones.draw();
+    })
     playerSprite.draw()
     foreground.draw()
+
+    /* Refactored code for the battle detection to save pasting it 4 times */
+    if(keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed){
+        /*Detection for the battle zone*/
+        for(let i = 0; i < battleZones.length; i++){
+            const battleZone = battleZones[i]
+            if(
+                rectangularCollision({
+                    rectangle1: playerSprite,
+                    rectangle2: battleZone
+                })
+            ){
+                console.log("battle zone")
+                break
+            }
+        }
+    }
+
         //Moving sprite
         let moving = true
         playerSprite.moving=false
@@ -187,10 +206,12 @@ function animate(){
                     break
                 }
             }
+
             if (moving)
                 movables.forEach((movable)=>{
                 movable.position.y += 3
             })
+
         } else if(keys.a.pressed && lastKey === 'a'){
             
             playerSprite.moving=true
