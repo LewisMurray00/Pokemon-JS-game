@@ -169,11 +169,19 @@ function animate(){
         /*Detection for the battle zone*/
         for(let i = 0; i < battleZones.length; i++){
             const battleZone = battleZones[i]
-            if(
+            const overlappingArea = 
+            (Math.min(playerSprite.position.x + playerSprite.width, battleZone.position.x + battleZone.width) -
+            Math.max(playerSprite.position.x, battleZone.position.x)) * 
+            (Math.min(playerSprite.position.y + playerSprite.height, battleZone.position.y + playerSprite.height) -
+            Math.max(playerSprite.position.y,battleZone.position.y))
+           
+        if(
                 rectangularCollision({
                     rectangle1: playerSprite,
                     rectangle2: battleZone
-                })
+                }) &&
+                overlappingArea > playerSprite.width * playerSprite.height / 2
+                && Math.random() < 0.1
             ){
                 console.log("battle zone")
                 break
