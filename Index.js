@@ -150,6 +150,11 @@ function rectangularCollision({rectangle1, rectangle2}){
     )
 }
 
+// Creating a battle variable
+const battle = {
+    initiated: false
+}
+
 function animate(){
     window.requestAnimationFrame(animate)
     background.draw()
@@ -161,8 +166,14 @@ function animate(){
     battleZones.forEach(battleZones=>{
         battleZones.draw();
     })
-    playerSprite.draw()
+    playerSprite.draw() 
     foreground.draw()
+
+    //Moving sprite
+    let moving = true
+    playerSprite.moving=false
+
+    if(battle.initiated) return
 
     /* Refactored code for the battle detection to save pasting it 4 times */
     if(keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed){
@@ -170,6 +181,7 @@ function animate(){
         for(let i = 0; i < battleZones.length; i++){
             const battleZone = battleZones[i]
             const overlappingArea = 
+            /* Math function that works out if majority of the sprite is in the overlapping area and if it is then it will log */
             (Math.min(playerSprite.position.x + playerSprite.width, battleZone.position.x + battleZone.width) -
             Math.max(playerSprite.position.x, battleZone.position.x)) * 
             (Math.min(playerSprite.position.y + playerSprite.height, battleZone.position.y + playerSprite.height) -
@@ -181,18 +193,15 @@ function animate(){
                     rectangle2: battleZone
                 }) &&
                 overlappingArea > playerSprite.width * playerSprite.height / 2
-                && Math.random() < 0.1
+                && Math.random() < 0.01
             ){
                 console.log("battle zone")
+               battle.initiated = true;
                 break
             }
         }
     }
 
-        //Moving sprite
-        let moving = true
-        playerSprite.moving=false
-        
         if(keys.w.pressed && lastKey === 'w'){
             
             playerSprite.moving=true
