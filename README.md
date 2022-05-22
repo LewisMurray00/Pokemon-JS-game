@@ -40,3 +40,8 @@
 2. Transition from map to battle sequence
 3. Draw battle background
 4. Add Battle Sprites
+
+
+## Assests
+- Used Tiled for the map design
+- Used GSAP to animate the div that contains a black screen

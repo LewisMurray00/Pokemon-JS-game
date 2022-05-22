@@ -3,12 +3,6 @@ const canvas = document.querySelector('canvas');
 /* Referencing canvas context */
 const context = canvas.getContext('2d')
 
-// Animating the black flash on the screen during a battle
-gsap.to('#overlappingDiv', {
-    opacity: 1,
-    repeat: 3,
-    yoyo: true
-})
 
 /* Setting the height and width of the canvas */
 canvas.height = 576;
@@ -204,6 +198,21 @@ function animate(){
             ){
                 console.log("battle zone")
                battle.initiated = true;
+               // Animating the black flash on the screen during a battle
+                gsap.to('#overlappingDiv', {
+                    opacity: 1,
+                    repeat: 3,
+                    yoyo: true,
+                    duration: 0.4,
+                    onComplete(){
+                        gsap.to('#overlappingDiv', {
+                            opacity: 1,
+                            duration: 0.4
+                        })
+
+                        //Activate a new animation loop 
+                    }
+                })
                 break
             }
         }
