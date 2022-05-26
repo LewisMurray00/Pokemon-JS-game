@@ -328,6 +328,9 @@ function animate(){
 }
 animate()
 
+const battleBackgroundImage = new Image()
+battleBackgroundImage.src = "./Images/battleBackground.png"
+
 function animateBattle(){
     window.requestAnimationFrame(animateBattle)
     console.log('animate battle')
