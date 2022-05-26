@@ -328,11 +328,22 @@ function animate(){
 }
 animate()
 
+//Assigning the background image to a variable
 const battleBackgroundImage = new Image()
 battleBackgroundImage.src = "./Images/battleBackground.png"
 
+//Assigning the background to a sprite
+const battleBackground = new Sprite({
+    position: {
+        x:0,
+        y:0
+    },
+    image: battleBackgroundImage
+})
+
 function animateBattle(){
     window.requestAnimationFrame(animateBattle)
+    battleBackground.draw()
     console.log('animate battle')
 }
 
