@@ -209,12 +209,16 @@ function animate(){
                     onComplete(){
                         gsap.to('#overlappingDiv', {
                             opacity: 1,
-                            duration: 0.4
+                            duration: 0.4,
+                            onComplete(){
+                                //Activate a new animation loop 
+                                animateBattle()
+                                gsap.to('#overlappingDiv', {
+                                    opacity: 1,
+                                    duration: 0.4,
+                                })
+                            }
                         })
-
-                        //Activate a new animation loop 
-                        animateBattle()
-
                     }
                 })
                 break
