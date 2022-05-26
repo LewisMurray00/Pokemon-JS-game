@@ -157,7 +157,7 @@ const battle = {
 }
 
 function animate(){
-    window.requestAnimationFrame(animate)
+    const animationId = window.requestAnimationFrame(animate)
     background.draw()
     /* Drawing the boundaries */
     boundaries.forEach(boundary=>{
@@ -197,6 +197,8 @@ function animate(){
                 && Math.random() < 0.01
             ){
                 console.log("battle zone")
+                //Deactivate current animation loop
+                window.cancelAnimationFrame(animationId)
                battle.initiated = true;
                // Animating the black flash on the screen during a battle
                 gsap.to('#overlappingDiv', {
@@ -211,6 +213,8 @@ function animate(){
                         })
 
                         //Activate a new animation loop 
+                        animateBattle()
+
                     }
                 })
                 break
@@ -323,6 +327,11 @@ function animate(){
         }
 }
 animate()
+
+function animateBattle(){
+    window.requestAnimationFrame(animateBattle)
+    console.log('animate battle')
+}
 
 let lastKey = ''
 

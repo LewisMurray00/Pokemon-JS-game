@@ -36,8 +36,8 @@
 
 - Battle Sequences:
 
-1. Battle activation
-2. Transition from map to battle sequence
+1. Battle activation (Done)
+2. Transition from map to battle sequence (Done)
 3. Draw battle background
 4. Add Battle Sprites
 
