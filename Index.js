@@ -211,11 +211,10 @@ function animate(){
                             opacity: 1,
                             duration: 0.4,
                             onComplete(){
-                                //Activate a new animation loop 
                                 animateBattle()
                                 gsap.to('#overlappingDiv', {
-                                    opacity: 1,
-                                    duration: 0.4,
+                                    opacity: 0,
+                                    duration: 0.4
                                 })
                             }
                         })
@@ -348,7 +347,6 @@ const battleBackground = new Sprite({
 function animateBattle(){
     window.requestAnimationFrame(animateBattle)
     battleBackground.draw()
-    console.log('animate battle')
 }
 
 let lastKey = ''
