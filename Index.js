@@ -334,7 +334,7 @@ animate()
 
 //Assigning the background image to a variable
 const battleBackgroundImage = new Image()
-battleBackgroundImage.src = "./Images/battleBackground.png"
+battleBackgroundImage.src = './Images/battleBackground.png'
 
 //Assigning the background to a sprite
 const battleBackground = new Sprite({
