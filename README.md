@@ -37,9 +37,20 @@
 - Battle Sequences:
 
 1. Battle activation (Done)
+
 2. Transition from map to battle sequence (Done)
-3. Draw battle background
+
+3. Draw battle background(Done)
+
 4. Add Battle Sprites
+ - Add Attack bar interface
+ - Add health bar interface
+ - Player Attacks
+ - Enemy attacks
+ - Queueing dialogue
+ - Battle end
+ - Transition back to map
+ - Music and Sound Effects
 
 
 ## Assests

@@ -172,7 +172,7 @@ function animate(){
 
     //Moving sprite
     let moving = true
-    playerSprite.moving=false
+    playerSprite.animate=false
 
     if(battle.initiated) return
 
@@ -227,7 +227,7 @@ function animate(){
 
         if(keys.w.pressed && lastKey === 'w'){
             
-            playerSprite.moving=true
+            playerSprite.animate=true
             playerSprite.image = playerSprite.sprites.up
         
             for(let i = 0; i < boundaries.length; i++){
@@ -254,7 +254,7 @@ function animate(){
 
         } else if(keys.a.pressed && lastKey === 'a'){
             
-            playerSprite.moving=true
+            playerSprite.animate=true
             playerSprite.image = playerSprite.sprites.left
 
             for(let i = 0; i < boundaries.length; i++){
@@ -279,7 +279,7 @@ function animate(){
             })
         } else if(keys.s.pressed && lastKey === 's'){
 
-            playerSprite.moving=true
+            playerSprite.animate=true
             playerSprite.image = playerSprite.sprites.down
 
             for(let i = 0; i < boundaries.length; i++){
@@ -304,7 +304,7 @@ function animate(){
             })
         } else if(keys.d.pressed && lastKey === 'd'){
 
-            playerSprite.moving=true
+            playerSprite.animate=true
             playerSprite.image = playerSprite.sprites.right
 
             for(let i = 0; i < boundaries.length; i++){
@@ -329,7 +329,8 @@ function animate(){
             })
         }
 }
-animate()
+
+//animate()
 
 //Assigning the background image to a variable
 const battleBackgroundImage = new Image()
@@ -344,10 +345,28 @@ const battleBackground = new Sprite({
     image: battleBackgroundImage
 })
 
+const dragglesImage = new Image()
+dragglesImage.src = './Images/draggleSprite.png'
+
+// Create new sprites for the enemy characters
+const draggles = new Sprite({
+    position:{
+        x:800,
+        y:100
+    },
+    image: dragglesImage,
+    frames:{
+        max: 4
+    }
+})
+
 function animateBattle(){
     window.requestAnimationFrame(animateBattle)
     battleBackground.draw()
+    draggles.draw()
 }
+
+animateBattle()
 
 let lastKey = ''
 
