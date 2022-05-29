@@ -91,7 +91,8 @@ const  playerSprite = new Sprite({
     },
     image: playerDownImage,
     frames: {
-        max: 4
+        max: 4,
+        hold: 10
     },
     sprites: {
         up: playerUpImage,
@@ -356,14 +357,34 @@ const draggles = new Sprite({
     },
     image: dragglesImage,
     frames:{
-        max: 4
-    }
+        max: 4,
+        hold:30
+    },
+    animate: true
+})
+
+// Creating our hero on the battleground
+const embyImage = new Image()
+embyImage.src = './Images/embySprite.png'
+
+const emby = new Sprite({
+    position:{
+        x:280,
+        y:325
+    },
+    image: embyImage,
+    frames:{
+        max: 4,
+        hold:30
+    },
+    animate: true
 })
 
 function animateBattle(){
     window.requestAnimationFrame(animateBattle)
     battleBackground.draw()
     draggles.draw()
+    emby.draw()
 }
 
 animateBattle()
