@@ -13,6 +13,7 @@ class Sprite {
         this.animate = animate
         this.sprites = sprites
         this.opacity = 1
+        this.health = 100
     }
 //Draws the map sprite
     draw(){
@@ -53,7 +54,15 @@ class Sprite {
         }).to(this.position, {
             x:this.position.x + 60,
             duration: 0.1,
-            onComplete(){
+            
+            //Code where the enemy gets hit
+            onComplete: ()=>{
+
+                gsap.to('#enemyHealthBar',{
+                    width: this.health - attack.damage + '%'
+                })
+
+                //Moves the enemy once its been hit
                 gsap.to(recipient.position, {
                     x: recipient.position.x + 10,
                     yoyo:true,
