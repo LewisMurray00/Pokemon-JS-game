@@ -389,6 +389,23 @@ function animateBattle(){
 
 animateBattle()
 
+//Adding event listener for the battle attack buttons
+document.querySelectorAll('button').forEach(button =>{
+    button.addEventListener('click', ()=>{
+        console.log('click')
+        emby.attack({
+            attack:{
+                name: 'Tackle',
+                damage: 10,
+                type: 'Normal'
+            },
+            recipient: draggles
+        })
+    })
+})
+
+
+
 let lastKey = ''
 
 /*Listens out for when a key is pressed */

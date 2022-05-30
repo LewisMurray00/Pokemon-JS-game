@@ -45,8 +45,10 @@
 4. Add Battle Sprites (Done)
 
  - Add Attack bar interface  (Done)
- - Add health bar interface
+ - Add health bar interface (Done)
  - Player Attacks
+    - tackle
+    - fireball
  - Enemy attacks
  - Queueing dialogue
  - Battle end
