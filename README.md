@@ -44,7 +44,7 @@
 
 4. Add Battle Sprites (Done)
 
- - Add Attack bar interface
+ - Add Attack bar interface  (Done)
  - Add health bar interface
  - Player Attacks
  - Enemy attacks
@@ -57,3 +57,4 @@
 ## Assests
 - Used Tiled for the map design
 - Used GSAP to animate the div that contains a black screen
+- Google Fonts to find the specific font
