@@ -43,6 +43,7 @@
 3. Draw battle background(Done)
 
 4. Add Battle Sprites (Done)
+
  - Add Attack bar interface
  - Add health bar interface
  - Player Attacks
