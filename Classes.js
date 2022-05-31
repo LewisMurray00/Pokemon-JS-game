@@ -1,7 +1,7 @@
     /* Once the image is loaded it activates this command */
 /* Creates an infinite loop */
 class Sprite {
-    constructor({position, image, frames = { max:1, hold: 10 }, sprites, animate = false }){
+    constructor({position, image, frames = { max:1, hold: 10 }, sprites, animate = false, isEnemy = false }){
         this.position = position
         this.image = image
         this.frames = { ...frames, val: 0, elapsed: 0}
@@ -14,6 +14,7 @@ class Sprite {
         this.sprites = sprites
         this.opacity = 1
         this.health = 100
+        this.isEnemy = isEnemy
     }
 //Draws the map sprite
     draw(){
@@ -49,16 +50,25 @@ class Sprite {
     attack({attack, recipient}){
         /* Using GSAP to animate the sprite in a 'tackle' way */
         const timeline = gsap.timeline()
+
+        this.health = this.health - attack.damage
+        
+        let movementDistance = 20
+        if(this.isEnemy) movementDistance = -20
+
+        let healthBar = '#enemyHealthBar'
+        if(this.isEnemy) healthBar = '#playerHealthBar'
+
         timeline.to(this.position, {
-            x:this.position.x - 20
+            x:this.position.x - movementDistance
         }).to(this.position, {
-            x:this.position.x + 60,
+            x:this.position.x + movementDistance * 3,
             duration: 0.1,
             
             //Code where the enemy gets hit
             onComplete: ()=>{
 
-                gsap.to('#enemyHealthBar',{
+                gsap.to(healthBar,{
                     width: this.health - attack.damage + '%'
                 })
 
