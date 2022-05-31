@@ -1,7 +1,7 @@
     /* Once the image is loaded it activates this command */
 /* Creates an infinite loop */
 class Sprite {
-    constructor({position, image, frames = { max:1, hold: 10 }, sprites, animate = false, isEnemy = false }){
+    constructor({position, image, frames = { max:1, hold: 10 }, sprites, animate = false, isEnemy = false, rotation = 0}){
         this.position = position
         this.image = image
         this.frames = { ...frames, val: 0, elapsed: 0}
@@ -13,12 +13,22 @@ class Sprite {
         this.animate = animate
         this.sprites = sprites
         this.opacity = 1
-        this.health = 100
+        this.health = 150
         this.isEnemy = isEnemy
+        this.rotation = rotation
     }
 //Draws the map sprite
     draw(){
         context.save()
+        context.translate(
+            this.position.x + this.width / 2,
+            this.position.y + this.height/2
+        )
+        context.rotate(this.rotation)
+        context.translate(
+            -this.position.x - this.width / 2,
+            -this.position.y - this.height/2
+        )
         context.globalAlpha = this.opacity
         context.drawImage(
             this.image,
@@ -52,6 +62,10 @@ class Sprite {
         let healthBar = '#enemyHealthBar'
         if(this.isEnemy) healthBar = '#playerHealthBar'
 
+        let rotation = 1
+        //Added the rotation for the enemy attacks
+        if(this.isEnemy) rotation = -2.2
+
         this.health = this.health - attack.damage
 
         switch (attack.name){
@@ -69,10 +83,11 @@ class Sprite {
                         max:4,
                         hold:10
                     },
-                    animate: true
+                    animate: true,
+                    rotation
                 })
 
-                renderedSprites.push(fireball)
+                renderedSprites.splice(1, 0, fireball)
 
                 //Make it move towards the enemy
                 gsap.to(fireball.position,{
@@ -101,7 +116,7 @@ class Sprite {
                             yoyo:true,
                             duration: 0.08
                         })
-                        renderedSprites.pop()
+                        renderedSprites.splice(1, 1)
                     }
                 })
             break;

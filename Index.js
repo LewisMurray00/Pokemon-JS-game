@@ -386,8 +386,6 @@ const renderedSprites = [draggles, emby]
 function animateBattle(){
     window.requestAnimationFrame(animateBattle)
     battleBackground.draw()
-    draggles.draw()
-    emby.draw()
 
     renderedSprites.forEach(sprite => {
         sprite.draw()
