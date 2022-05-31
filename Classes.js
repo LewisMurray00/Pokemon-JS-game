@@ -48,6 +48,12 @@ class Sprite {
     }
     /* Creating the attack constructor*/
     attack({attack, recipient, renderedSprites}){
+
+        let healthBar = '#enemyHealthBar'
+        if(this.isEnemy) healthBar = '#playerHealthBar'
+
+        this.health = this.health - attack.damage
+
         switch (attack.name){
             case 'Fireball':
                 const fireballImage = new Image()
@@ -67,18 +73,44 @@ class Sprite {
                 })
 
                 renderedSprites.push(fireball)
+
+                //Make it move towards the enemy
+                gsap.to(fireball.position,{
+                    x: recipient.position.x,
+                    y: recipient.position.y,
+
+                    // Remove the fireball sprite from the battle
+                    onComplete: ()=> {
+                        
+                        gsap.to(healthBar,{
+                            width: this.health - attack.damage + '%'
+                        })
+    
+                        //Moves the enemy once its been hit
+                        gsap.to(recipient.position, {
+                            x: recipient.position.x + 10,
+                            yoyo:true,
+                            repeat: 5,
+                            duration: 0.08
+                        })
+    
+                        //Add a opacity feature
+                        gsap.to(recipient, {
+                            opacity: 0,
+                            repeat: 5,
+                            yoyo:true,
+                            duration: 0.08
+                        })
+                        renderedSprites.pop()
+                    }
+                })
             break;
             case 'Tackle':
             /* Using GSAP to animate the sprite in a 'tackle' way */
             const timeline = gsap.timeline()
-
-            this.health = this.health - attack.damage
         
             let movementDistance = 20
             if(this.isEnemy) movementDistance = -20
-
-            let healthBar = '#enemyHealthBar'
-            if(this.isEnemy) healthBar = '#playerHealthBar'
 
             timeline.to(this.position, {
                 x:this.position.x - movementDistance

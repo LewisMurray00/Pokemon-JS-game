@@ -381,7 +381,7 @@ const emby = new Sprite({
     animate: true
 })
 
-const renderedSprites = []
+const renderedSprites = [draggles, emby]
 
 function animateBattle(){
     window.requestAnimationFrame(animateBattle)
