@@ -381,11 +381,17 @@ const emby = new Sprite({
     animate: true
 })
 
+const renderedSprites = []
+
 function animateBattle(){
     window.requestAnimationFrame(animateBattle)
     battleBackground.draw()
     draggles.draw()
     emby.draw()
+
+    renderedSprites.forEach(sprite => {
+        sprite.draw()
+    })
 }
 
 animateBattle()
@@ -396,7 +402,8 @@ document.querySelectorAll('button').forEach(button =>{
         const selectedAttack = attacks[e.currentTarget.innerHTML]
         emby.attack({
             attack: selectedAttack,
-            recipient: draggles
+            recipient: draggles,
+            renderedSprites
         })
     })
 })

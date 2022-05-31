@@ -47,7 +47,7 @@ class Sprite {
             }
     }
     /* Creating the attack constructor*/
-    attack({attack, recipient}){
+    attack({attack, recipient, renderedSprites}){
         switch (attack.name){
             case 'Fireball':
                 const fireballImage = new Image()
@@ -58,8 +58,15 @@ class Sprite {
                         x: this.position.x,
                         y: this.position.y
                     },
-                    image: fireballImage
+                    image: fireballImage,
+                    frames:{
+                        max:4,
+                        hold:10
+                    },
+                    animate: true
                 })
+
+                renderedSprites.push(fireball)
             break;
             case 'Tackle':
             /* Using GSAP to animate the sprite in a 'tackle' way */
