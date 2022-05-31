@@ -47,7 +47,7 @@
  - Add Attack bar interface  (Done)
  - Add health bar interface (Done)
  - Player Attacks
-    - tackle
+    - tackle (Done)
     - fireball
  - Enemy attacks
  - Queueing dialogue

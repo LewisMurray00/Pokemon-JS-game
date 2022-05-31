@@ -48,49 +48,54 @@ class Sprite {
     }
     /* Creating the attack constructor*/
     attack({attack, recipient}){
-        /* Using GSAP to animate the sprite in a 'tackle' way */
-        const timeline = gsap.timeline()
+        switch (attack.name){
+            case 'Tackle':
+            /* Using GSAP to animate the sprite in a 'tackle' way */
+            const timeline = gsap.timeline()
 
-        this.health = this.health - attack.damage
+            this.health = this.health - attack.damage
         
-        let movementDistance = 20
-        if(this.isEnemy) movementDistance = -20
+            let movementDistance = 20
+            if(this.isEnemy) movementDistance = -20
 
-        let healthBar = '#enemyHealthBar'
-        if(this.isEnemy) healthBar = '#playerHealthBar'
+            let healthBar = '#enemyHealthBar'
+            if(this.isEnemy) healthBar = '#playerHealthBar'
 
-        timeline.to(this.position, {
-            x:this.position.x - movementDistance
-        }).to(this.position, {
-            x:this.position.x + movementDistance * 3,
-            duration: 0.1,
+            timeline.to(this.position, {
+                x:this.position.x - movementDistance
+            }).to(this.position, {
+                x:this.position.x + movementDistance * 3,
+                duration: 0.1,
             
-            //Code where the enemy gets hit
-            onComplete: ()=>{
+                //Code where the enemy gets hit
+                onComplete: ()=>{
 
-                gsap.to(healthBar,{
-                    width: this.health - attack.damage + '%'
-                })
+                    gsap.to(healthBar,{
+                        width: this.health - attack.damage + '%'
+                    })
 
-                //Moves the enemy once its been hit
-                gsap.to(recipient.position, {
-                    x: recipient.position.x + 10,
-                    yoyo:true,
-                    repeat: 5,
-                    duration: 0.08
-                })
+                    //Moves the enemy once its been hit
+                    gsap.to(recipient.position, {
+                        x: recipient.position.x + 10,
+                        yoyo:true,
+                        repeat: 5,
+                        duration: 0.08
+                    })
 
-                //Add a opacity feature
-                gsap.to(recipient, {
-                    opacity: 0,
-                    repeat: 5,
-                    yoyo:true,
-                    duration: 0.08
-                })
-            }
-        }).to(this.position,{
-            x:this.position.x
-        })
+                    //Add a opacity feature
+                    gsap.to(recipient, {
+                        opacity: 0,
+                        repeat: 5,
+                        yoyo:true,
+                        duration: 0.08
+                    })
+                }
+            }).to(this.position,{
+                x:this.position.x
+            })
+            break;
+        }
+
     }
 }
 
