@@ -11,26 +11,9 @@ const battleBackground = new Sprite({
     image: battleBackgroundImage
 })
 
-const dragglesImage = new Image()
-dragglesImage.src = './Images/draggleSprite.png'
-
 // Create new sprites for the enemy characters
-const draggles = new Sprite({
-    position:{
-        x:800,
-        y:100
-    },
-    image: dragglesImage,
-    frames:{
-        max: 4,
-        hold:30
-    },
-    animate: true,
-    isEnemy: true,
-    name: 'Draggles'
-})
-
-const emby = new Sprite(monsters.Emby)
+const draggles = new Monster(monsters.Draggles)
+const emby = new Monster(monsters.Emby)
 
 const renderedSprites = [draggles, emby]
 
