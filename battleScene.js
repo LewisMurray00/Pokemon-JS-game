@@ -61,6 +61,9 @@ function animateBattle(){
 
 animateBattle()
 
+//Creating a queue that holds both good and bad attacks 
+const queue = []
+
 //Adding event listener for the battle attack buttons
 document.querySelectorAll('button').forEach(button =>{
     button.addEventListener('click', (e)=>{
@@ -70,10 +73,22 @@ document.querySelectorAll('button').forEach(button =>{
             recipient: draggles,
             renderedSprites
         })
+
+        queue.push(()=>{
+            draggles.attack({
+                attack: attacks.Tackle,
+                recipient: emby,
+                renderedSprites
+            })
+        })
     })
 })
 
 //Updating dialogue box with enemy attacks and then the next phase
 document.querySelector('#dialogueBox').addEventListener('click', (e)=>{
-    e.currentTarget.style.display = 'none'
+    if(queue.length > 0){
+        queue[0]()
+        queue.shift()
+    } else e.currentTarget.style.display = 'none'
+
 })
