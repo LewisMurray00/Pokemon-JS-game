@@ -48,7 +48,7 @@
  - Add health bar interface (Done)
  - Player Attacks
     - tackle (Done)
-    - fireball
+    - fireball (Done)
  - Enemy attacks
  - Queueing dialogue
  - Battle end
