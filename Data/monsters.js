@@ -34,6 +34,6 @@ const monsters = {
             animate: true,
             isEnemy: true,
             name: 'Draggles',
-            attacks: [attacks.Tackle]
+            attacks: [attacks.Tackle, attacks.Fireball]
     }
 }
