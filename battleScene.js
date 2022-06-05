@@ -30,25 +30,14 @@ const draggles = new Sprite({
     name: 'Draggles'
 })
 
-// Creating our hero on the battleground
-const embyImage = new Image()
-embyImage.src = './Images/embySprite.png'
-
-const emby = new Sprite({
-    position:{
-        x:280,
-        y:325
-    },
-    image: embyImage,
-    frames:{
-        max: 4,
-        hold:30
-    },
-    animate: true,
-    name: 'Emby'
-})
+const emby = new Sprite(monsters.Emby)
 
 const renderedSprites = [draggles, emby]
+
+const button = document.createElement('button')
+button.innerHTML = 'Fireball'
+document.querySelector('#attacksBox').append(button)
+
 
 function animateBattle(){
     window.requestAnimationFrame(animateBattle)

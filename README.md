@@ -50,7 +50,7 @@
     - tackle (Done)
     - fireball (Done)
  - Enemy attacks
- - Queueing dialogue
+ - Queueing dialogue (Done)
  - Battle end
  - Transition back to map
  - Music and Sound Effects
