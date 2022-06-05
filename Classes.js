@@ -65,7 +65,8 @@ class Sprite {
 class Monster extends Sprite {
     constructor({position, image, frames = { max:1, hold: 10 }, sprites, animate = false, rotation = 0,
         isEnemy = false, 
-        name
+        name,
+        attacks
     }){
         super({
         position, 
@@ -78,6 +79,7 @@ class Monster extends Sprite {
             this.health = 100
             this.isEnemy = isEnemy
             this.name = name
+            this.attacks = attacks
     }
     /* Creating the attack constructor*/
     attack({attack, recipient, renderedSprites}){

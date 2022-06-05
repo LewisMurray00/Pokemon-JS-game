@@ -17,9 +17,13 @@ const emby = new Monster(monsters.Emby)
 
 const renderedSprites = [draggles, emby]
 
-const button = document.createElement('button')
-button.innerHTML = 'Fireball'
-document.querySelector('#attacksBox').append(button)
+emby.attacks.forEach(attack => {
+    const button = document.createElement('button')
+    button.innerHTML = attack.name
+    document.querySelector('#attacksBox').append(button)
+    
+})
+
 
 
 function animateBattle(){
