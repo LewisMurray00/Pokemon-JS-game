@@ -74,6 +74,6 @@ document.querySelectorAll('button').forEach(button =>{
 })
 
 //Updating dialogue box with enemy attacks and then the next phase
-document.querySelector('#dialogueBox').addEventListener('click', ()=>{
-    console.log('clicked')
+document.querySelector('#dialogueBox').addEventListener('click', (e)=>{
+    e.currentTarget.style.display = 'none'
 })
